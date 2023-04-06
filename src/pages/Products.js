@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import ProductCard from "../components/Products/ProductCard";
 import { useGetProductsQuery } from "../state/api/apiSlice";
+
+
 
 const Products = () => {
   const { data: products, isFetching, isSuccess } = useGetProductsQuery();
@@ -17,13 +19,13 @@ const Products = () => {
   const filterProducts = (products) => {
     return products.filter(
       (product) =>
-        product.category === `men's clothing` ||
-        product.category === `women's clothing`
+        product?.category === `men's clothing` ||
+        product?.category === `women's clothing`
     );
   };
 
   const productCards = products
-    ? products.map((product) => (
+    ? products?.map((product) => (
         <ProductCard
           key={uuidv4()}
           id={product.id}

@@ -29,7 +29,7 @@ const CartItem = ({ id, title, price, image, quantity }) => {
         <div>${sumPrice()}</div>
         <AmountChanger>
           <Button
-            onClick={() => dispatch(decrementQuantity(product))}
+            onClick={() => cartItem.quantity>1?dispatch(decrementQuantity(product)):dispatch(removeItem(product))}
             content={<FaMinus />}
             color="grey"
             animation="color"
