@@ -5,7 +5,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import routes from "../constants/routes.json";
-import { openCart } from "../state/actions";
 import { cartOpened } from "../state/cartActive/cartActiveSlice";
 
 const Header = () => {

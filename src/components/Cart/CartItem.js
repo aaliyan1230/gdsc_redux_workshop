@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
-import { addToCart, removeFromCart } from "../../state/actions";
-import { addedToCart } from "../../state/reducers/cart";
+import { addedToCart, removeItem, incrementQuantity, decrementQuantity } from "../../state/cart/cart";
 
 const CartItem = ({ id, title, price, image, quantity }) => {
   const cartItem = { id, title, price, image, quantity };
@@ -30,14 +29,14 @@ const CartItem = ({ id, title, price, image, quantity }) => {
         <div>${sumPrice()}</div>
         <AmountChanger>
           <Button
-            onClick={() => dispatch(removeFromCart(product))}
+            onClick={() => dispatch(decrementQuantity(product))}
             content={<FaMinus />}
             color="grey"
             animation="color"
           ></Button>
           <div>{cartItem.quantity}</div>
           <Button
-            onClick={() => dispatch(addedToCart(product))}
+            onClick={() => dispatch(incrementQuantity(product))}
             content={<FaPlus />}
             color="grey"
             animation="color"

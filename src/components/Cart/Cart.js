@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../Button";
 import CartItem from "./CartItem";
-import { closeCart } from "../../state/actions";
 import { cartClosed } from "../../state/cartActive/cartActiveSlice";
 
 const Cart = () => {
@@ -12,17 +11,17 @@ const Cart = () => {
   const cartActive = useSelector((state) => state.cartActive);
   const dispatch = useDispatch();
 
-  // const sumTotal = () => {
-  //   return cart
-  //     ?.reduce(
-  //       (total, cartItem) => total + cartItem.price * cartItem.quantity,
-  //       0
-  //     )
-  //     .toFixed(2);
-  // };
+  const sumTotal = () => {
+    return cart
+      ?.reduce(
+        (total, cartItem) => total + cartItem.price * cartItem.quantity,
+        0
+      )
+      .toFixed(2);
+  };
+  console.log("cart::==", cart);
 
-  const cartItems = [];
-  cart.map((cartItem) => (
+  const cartItems = cart.map((cartItem) => (
     <CartItem
       key={uuidv4()}
       id={cartItem.id}
@@ -38,7 +37,7 @@ const Cart = () => {
       <CartWrapper isOpen={cartActive}>
         <Title>Your shopping cart</Title>
         <Products>{cartItems}</Products>
-        <Total>Total: ${}</Total>
+        <Total>Total: ${sumTotal()}</Total>
         <Button
           content="Checkout"
           size="wide"
