@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
-import { addedToCart, removeItem, incrementQuantity, decrementQuantity } from "../../state/cart/cart";
+import { incrementQuantity, decrementQuantity } from "../../state/cart/cart";
 
 const CartItem = ({ id, title, price, image, quantity }) => {
   const cartItem = { id, title, price, image, quantity };

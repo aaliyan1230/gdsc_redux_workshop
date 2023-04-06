@@ -5,7 +5,7 @@ import ProductCard from "../components/Products/ProductCard";
 import { useGetProductsQuery } from "../state/api/apiSlice";
 
 const Products = () => {
-  const { data: products, isFetching, isSuccess } = useGetProductsQuery();
+  const { data: products } = useGetProductsQuery();
 
   useEffect(() => {
     if (products) {
