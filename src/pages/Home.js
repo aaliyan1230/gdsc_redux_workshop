@@ -8,6 +8,24 @@ import routes from '../constants/routes.json'
 const Home = () => {
   return (
     <HomeWrapper>
+      <Message>
+        <SmallMessage>
+          Online astore for gdsc workshop
+        </SmallMessage>
+        <BigMessage>We sell clothes online</BigMessage>
+        <Link to= { routes.PRODUCTS}>
+          <Button
+          content="Shop now"
+          size="big"
+          shape="round"
+          color="dark"
+          animation="scale"
+          >
+
+          </Button>
+        </Link>
+      </Message>
+      <Image src={homepageImage} alt="store"></Image>
     </HomeWrapper>
   )
 }
