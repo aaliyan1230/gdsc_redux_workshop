@@ -8,6 +8,22 @@ import routes from "../constants/routes.json";
 import { cartOpened } from "../state/cartActive/cartActiveSlice";
 
 const Header = () => {
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const getTotalQuantity = () => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += item.quantity;
+    });
+    return total;
+  };
+
+  // const sumQuantity = () => {
+  //   return cart?.reduce(
+  //     (quantity, cartItem) => quantity + cartItem.quantity,
+  //     0
+  //   );
+  // };
 
   return (
     <HeaderWrapper>
@@ -16,6 +32,17 @@ const Header = () => {
           <Logo>Fashion Store</Logo>
         </Link>
         <Navbar>
+          <NavbarLink to={routes.HOME}>Home</NavbarLink>
+          <NavbarLink to={routes.PRODUCTS}>Products</NavbarLink>
+          <NavbarLink to={routes.CONTACT}>Contact</NavbarLink>
+          <ButtonContainer onClick={() => dispatch(cartOpened())}>
+            <Button content={<FaShoppingCart />} shape="round" />
+            {getTotalQuantity() > 0 ? (
+              <Quantity>{getTotalQuantity()}</Quantity>
+            ) : (
+              ""
+            )}
+          </ButtonContainer>
         </Navbar>
       </Container>
     </HeaderWrapper>

@@ -4,11 +4,20 @@ import PropTypes from "prop-types";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
-import { incrementQuantity, decrementQuantity, removeItem } from "../../state/cart/cart";
+import { incrementQuantity, decrementQuantity } from "../../state/cart/cart";
 
 const CartItem = ({ id, title, price, image, quantity }) => {
   const cartItem = { id, title, price, image, quantity };
   const product = { id, title, price, image };
+  const dispatch = useDispatch();
+
+  const formatTitle = (title) => {
+    return title.length <= 14 ? title : title.substr(0, 14) + "...";
+  };
+
+  const sumPrice = () => {
+    return (cartItem.price * cartItem.quantity).toFixed(2);
+  };
 
   return (
     <CartItemCardWrapper>
@@ -16,18 +25,18 @@ const CartItem = ({ id, title, price, image, quantity }) => {
         <Image src={image}></Image>
       </ImageContainer>
       <Details>
-        <Title></Title>
-        <div>
-          {/* price */}
-        </div>
+        <Title>{formatTitle(title)}</Title>
+        <div>${sumPrice()}</div>
         <AmountChanger>
           <Button
+            onClick={() => dispatch(decrementQuantity(product))}
             content={<FaMinus />}
             color="grey"
             animation="color"
           ></Button>
           <div>{cartItem.quantity}</div>
           <Button
+            onClick={() => dispatch(incrementQuantity(product))}
             content={<FaPlus />}
             color="grey"
             animation="color"

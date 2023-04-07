@@ -9,23 +9,19 @@ const Home = () => {
   return (
     <HomeWrapper>
       <Message>
-        <SmallMessage>
-          Online astore for gdsc workshop
-        </SmallMessage>
-        <BigMessage>We sell clothes online</BigMessage>
-        <Link to= { routes.PRODUCTS}>
+        <SmallMessage>Best online store of the decade!</SmallMessage>
+        <BigMessage>We sell merchandise, Its Fashion Time!</BigMessage>
+        <Link to={routes.PRODUCTS}>
           <Button
-          content="Shop now"
-          size="big"
-          shape="round"
-          color="dark"
-          animation="scale"
-          >
-
-          </Button>
+            content="Shop now"
+            size="big"
+            shape="round"
+            color="dark"
+            animation="scale"
+          ></Button>
         </Link>
       </Message>
-      <Image src={homepageImage} alt="store"></Image>
+      <Image src={homepageImage} alt="people"></Image>
     </HomeWrapper>
   )
 }

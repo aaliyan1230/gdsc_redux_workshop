@@ -3,9 +3,11 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import Button from "../Button";
+import { addedToCart } from "../../state/cart/cart";
 
 const ProductCard = ({ id, title, price, image, category }) => {
   const product = { id, title, price, image, category };
+  const dispatch = useDispatch();
 
   return (
     <ProductCardWrapper>
@@ -18,6 +20,7 @@ const ProductCard = ({ id, title, price, image, category }) => {
           <div>${price.toFixed(2)}</div>
         </Info>
         <Button
+          onClick={() => dispatch(addedToCart(product))}
           content="Add to cart"
           size="wide"
           color="dark"
