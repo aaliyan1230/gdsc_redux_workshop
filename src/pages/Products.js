@@ -7,14 +7,27 @@ import { useGetProductsQuery } from "../state/api/apiSlice";
 
 
 const Products = () => {
-  const { data: products } = useGetProductsQuery();
-
-  useEffect(() => {
-    if (products) {
-      filterProducts(products);
+  // const { data: products } = useGetProductsQuery();
+  
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  async function fetchApiData(){
+    const response = await fetch("https://fakestoreapi.com/products");
+    const res = await response.json();
+    if(!loading){
+      setLoading(true);
     }
+    setProducts(res);
+  }
+  useEffect(() => {
+    // if (products) {
+    //   filterProducts(products);
+    // }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchApiData()
   }, []);
+
+  const memoizedData = useMemo(()=>products, [products, loading]);
 
   const filterProducts = (products) => {
     return products.filter(
@@ -24,8 +37,8 @@ const Products = () => {
     );
   };
 
-  const productCards = products
-    ? products?.map((product) => (
+  const productCards = memoizedData
+    ? memoizedData?.map((product) => (
         <ProductCard
           key={uuidv4()}
           id={product.id}
