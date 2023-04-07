@@ -13,7 +13,9 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
+      <Provider store={store}>
         <App />
+        </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );

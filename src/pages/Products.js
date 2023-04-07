@@ -7,7 +7,7 @@ import { useGetProductsQuery } from "../state/api/apiSlice";
 
 
 const Products = () => {
-  // const { data: products } = useGetProductsQuery();
+  const { data: products } = useGetProductsQuery();
 
   return <ProductsWrapper></ProductsWrapper>;
 };
