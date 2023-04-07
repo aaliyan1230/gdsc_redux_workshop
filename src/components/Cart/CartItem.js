@@ -9,15 +9,6 @@ import { incrementQuantity, decrementQuantity, removeItem } from "../../state/ca
 const CartItem = ({ id, title, price, image, quantity }) => {
   const cartItem = { id, title, price, image, quantity };
   const product = { id, title, price, image };
-  const dispatch = useDispatch();
-
-  const formatTitle = (title) => {
-    return title.length <= 14 ? title : title.substr(0, 14) + "...";
-  };
-
-  const sumPrice = () => {
-    return (cartItem.price * cartItem.quantity).toFixed(2);
-  };
 
   return (
     <CartItemCardWrapper>
@@ -25,18 +16,18 @@ const CartItem = ({ id, title, price, image, quantity }) => {
         <Image src={image}></Image>
       </ImageContainer>
       <Details>
-        <Title>{formatTitle(title)}</Title>
-        <div>${sumPrice()}</div>
+        <Title></Title>
+        <div>
+          {/* price */}
+        </div>
         <AmountChanger>
           <Button
-            onClick={() => cartItem.quantity>1?dispatch(decrementQuantity(product)):dispatch(removeItem(product))}
             content={<FaMinus />}
             color="grey"
             animation="color"
           ></Button>
           <div>{cartItem.quantity}</div>
           <Button
-            onClick={() => dispatch(incrementQuantity(product))}
             content={<FaPlus />}
             color="grey"
             animation="color"

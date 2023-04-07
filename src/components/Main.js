@@ -9,11 +9,6 @@ import routes from '../constants/routes.json'
 const Main = () => {
   return (
     <MainWrapper>
-      <Routes>
-        <Route exact path={routes.HOME} element={<Home />} />
-        <Route exact path={routes.PRODUCTS} element={<Products/>} />
-        <Route exact path={routes.CONTACT} element={<Contact/>} />
-      </Routes>
     </MainWrapper>
   )
 }

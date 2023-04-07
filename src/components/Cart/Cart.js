@@ -7,37 +7,12 @@ import CartItem from "./CartItem";
 import { cartClosed } from "../../state/cartActive/cartActiveSlice";
 
 const Cart = () => {
-  const cart = useSelector((state) => state.cart);
-  const cartActive = useSelector((state) => state.cartActive);
-  const dispatch = useDispatch();
-
-  const sumTotal = () => {
-    return cart
-      ?.reduce(
-        (total, cartItem) => total + cartItem.price * cartItem.quantity,
-        0
-      )
-      .toFixed(2);
-  };
-  console.log("cart::==", cart);
-
-  const cartItems = cart.map((cartItem) => (
-    <CartItem
-      key={uuidv4()}
-      id={cartItem.id}
-      title={cartItem.title}
-      price={cartItem.price}
-      image={cartItem.image}
-      quantity={cartItem.quantity}
-    ></CartItem>
-  ));
-
   return (
     <>
-      <CartWrapper isOpen={cartActive}>
+      <CartWrapper>
         <Title>Your shopping cart</Title>
-        <Products>{cartItems}</Products>
-        <Total>Total: ${sumTotal()}</Total>
+        <Products></Products>
+        <Total>Total: </Total>
         <Button
           content="Checkout"
           size="wide"
@@ -45,15 +20,13 @@ const Cart = () => {
           animation="color"
         />
         <Button
-          // onClick={() => cartClosed()}
-          onClick={() => dispatch(cartClosed())}
           content="Close"
           size="wide"
           color="red"
           animation="color"
         />
       </CartWrapper>
-      <Overlay onClick={() => dispatch(cartClosed())} isOpen={cartActive} />
+      <Overlay />
     </>
   );
 };

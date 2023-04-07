@@ -8,48 +8,8 @@ import { useGetProductsQuery } from "../state/api/apiSlice";
 
 const Products = () => {
   // const { data: products } = useGetProductsQuery();
-  
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  async function fetchApiData(){
-    const response = await fetch("https://fakestoreapi.com/products");
-    const res = await response.json();
-    if(!loading){
-      setLoading(true);
-    }
-    setProducts(res);
-  }
-  useEffect(() => {
-    // if (products) {
-    //   filterProducts(products);
-    // }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    fetchApiData()
-  }, []);
 
-  const memoizedData = useMemo(()=>products, [products, loading]);
-
-  const filterProducts = (products) => {
-    return products.filter(
-      (product) =>
-        product?.category === `men's clothing` ||
-        product?.category === `women's clothing`
-    );
-  };
-
-  const productCards = memoizedData
-    ? memoizedData?.map((product) => (
-        <ProductCard
-          key={uuidv4()}
-          id={product.id}
-          title={product.title}
-          price={product.price}
-          image={product.image}
-        />
-      ))
-    : null;
-
-  return <ProductsWrapper>{productCards}</ProductsWrapper>;
+  return <ProductsWrapper></ProductsWrapper>;
 };
 
 const ProductsWrapper = styled.div`
